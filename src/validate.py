@@ -2,16 +2,19 @@ import pandas as pd
 import datetime 
 from instance_a import instance_a
 ## Adicionar validação para compras > data atual
-def check_date(frame):
+def validate_date(frame):
     invalid_date = frame.loc[frame["data"] > datetime.date.today()]
-    return invalid_date
+    if invalid_date.empty:
+        create_invalid_dates()
 
 
 ## adicionar validação para compras sem associação com vendedor
-def check_func(frame):
+def validate_func(frame):
     invalid_func = frame.loc[frame['funcionário'] == '' ]
     return invalid_func
 
+def create_invalid_dates():
+    pass
 
-## adicionar validação para linhas duplicadas
-    # --  Fazer no pandas com o remove_duplicates()
+def create_invalid_func():
+    pass
