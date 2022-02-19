@@ -1,18 +1,5 @@
 version: '3.1'
-# services:
 
-#   db:
-#     image: postgres:latest
-#     restart: always
-#     environment:
-#       POSTGRES_DATABASE: rio
-#       POSTGRES_USER: root
-#       POSTGRES_PASSWORD: root
-#       # POSTGRES_ROOT_PASSWORD: root
-#     volumes:
-#       - .dbdata:/var/lib/mysql
-#     ports:
-#       - 8080:8080
 services:
 
   db:
@@ -21,14 +8,8 @@ services:
     user: postgres
     environment:
       POSTGRES_DB: rio
-      # POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
       - .dbdata:/var/lib/postgresql/data
     ports:
       - 8003:5432
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080

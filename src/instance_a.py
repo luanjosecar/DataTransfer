@@ -21,6 +21,7 @@ def instance_a():
     cur.execute(sql)
     data = cur.fetchall()
     pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
+    print(pd_data.head())
     return pd_data
 
 def instance_time(time):
