@@ -15,6 +15,3 @@ def check_func(frame):
 
 ## adicionar validação para linhas duplicadas
     # --  Fazer no pandas com o remove_duplicates()
-
-frame1 = instance_a()
-check_date(frame1)

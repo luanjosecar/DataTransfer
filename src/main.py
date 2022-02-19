@@ -17,8 +17,8 @@ def pd_to_tuples(frame):
 def feed_all():
     
     frame1 = instance_a()
-    frame2 = intance_b_cat()
-    frame3 = intance_b_func()
+    frame2 = instance_b_cat()
+    frame3 = instance_b_func()
 
     frame = join_info(frame1, frame2, frame3)
 
@@ -27,5 +27,31 @@ def feed_all():
     data = pd_to_tuples(frame)
     input_data(data)
 
+
+def feed_data():
+    lastView = os.getenv("LAST_VIEW")
+    frame1 = instance_time(lastView)
+    frame2 = instance_b_cat()
+    frame3 = instance_b_func()
+    frame = join_info(frame1, frame2, frame3)
+
+    print(frame.head())
+
+    data = pd_to_tuples(frame)
+    input_data(data)
+
+
 def get_data(frame):
     return frame.data.max()
+
+
+if __name__ == "__main__":
+    #Passos
+    # Criar a tabela principal se não existe
+    create_bases()
+    #Verifica se a table aesta nula
+    if(check_table()):
+        feed_data()
+    else :
+        feed_all()
+    

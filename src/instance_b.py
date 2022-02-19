@@ -14,7 +14,7 @@ password = os.getenv("PSTG_PSW")
 con = psycopg2.connect(host=host, database=db, user=user, password=password)
 cur = con.cursor()
 
-def intance_b_cat():
+def instance_b_cat():
     sql = "select * from categoria"
     cur.execute(sql)
     data = cur.fetchall()
@@ -22,7 +22,7 @@ def intance_b_cat():
     return pd_data
 
 
-def intance_b_func():
+def instance_b_func():
     cur = con.cursor()
     sql = "select * from funcionario"
     cur.execute(sql)

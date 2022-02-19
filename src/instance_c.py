@@ -44,7 +44,7 @@ def check_codes():
     cur.execute(sql)
     return cur.fetchall()
 
-def check_data():
+def check_table():
     sql = 'SELECT CASE WHEN EXISTS (SELECT * FROM vendas LIMIT 1) THEN 1 ELSE 0 END'
     cur.execute(sql)
     index, =  cur.fetchone()
