@@ -2,19 +2,15 @@ import psycopg2
 import pandas as pd
 import datetime
 
-host = 'localhost'
-db = 'rio'
-user = 'postgres'
-password = 'root'
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-host = os.getenv('HOST_C') | 'localhost'
-db = os.getenv("DB_c") | 'rio'
-user = os.getenv("PSTG_USER_c") | 'postgres'
-password = os.getenv("PSTG_PSW_c") | "root"
+host ='localhost'
+db = 'rio'
+user = 'postgres'
+password = "root"
 
 
 con = psycopg2.connect(host=host, database=db, user=user, password=password, port=8003)
@@ -36,6 +32,8 @@ def create_bases():
 
 def input_data(data:list):
     data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
+    if(data_string == ""):
+        return
     cur.execute('INSERT INTO VENDAS VALUES ' + str(data_string))
     con.commit()
 
