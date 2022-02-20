@@ -73,45 +73,16 @@ def create_invalid_func(frame):
     con.close()
 
 
-def verify_difs():
-
-    host ='localhost'
-    db = 'rio'
-    user = 'postgres'
-    password = "root"
-    con = psycopg2.connect(host=host, database=db, user=user, password=password, port=8003)
-    cur = con.cursor()
-    sql = "select id_venda from vendas"
-    cur.execute(sql)
-    data = cur.fetchall()
-    con.close()
-    pd_data_c = pd.DataFrame(data, columns =['id_venda'])
-
-
-    host = os.getenv('HOST_A')
-    db = os.getenv("DB")
-    user = os.getenv("PSTG_USER")
-    password = os.getenv("PSTG_PSW")
-    con = psycopg2.connect(host=host, database=db, user=user, password=password)
-    cur = con.cursor()
-    sql = "select id_venda from venda"
-    cur.execute(sql)
-    data = cur.fetchall()
-    pd_data_a = pd.DataFrame(data, columns =['id_venda'])
+def verify_difs_ac():
+    data = check_id_vend_c()
     
+    pd_data_a = check_od_vend_a()
 
     frame = pd.concat([pd_data_c,pd_data_a]).drop_duplicates(keep=False)
 
-    data = list(frame.itertuples(index=False, name=None))
-
-    data_string = ','.join( str(values) for values in data)
-    if data_string == "":
-        return pd.DataFrame( columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
-    sql = "SELECT * FROM VENDA WHERE ID_VENDA IN ( '' )" 
-
-    cur.execute(sql)
-    data = cur.fetchall()
-    pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
-    con.close()
+    pd_data = get_data_by_id(frame)
 
     return pd_data
+
+
+def verify_difs_bc1():

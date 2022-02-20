@@ -29,18 +29,31 @@ def create_bases():
         ''')
     con.commit()
 
-
-def input_data(data:list):
-    data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
-    if(data_string == ""):
-        return
-    cur.execute('INSERT INTO VENDAS VALUES ' + str(data_string))
+    cur.execute(''' CREATE TABLE IF NOT EXISTS 
+            FUNCIONARIOS (
+                ID_FUNC INTEGER,
+                FUNCIONARIO VARCHAR(1024)
+            )
+        ''')
     con.commit()
 
-def check_codes():
+
+    cur.execute(''' CREATE TABLE IF NOT EXISTS 
+            CATEGORIAS (
+                ID_CAT INTEGER,
+                CATEGORIA VARCHAR(1024)
+            )
+        ''')
+    con.commit()
+
+
+
+def check_id_vend_c():
     sql = "select id_venda from vendas"
     cur.execute(sql)
-    return cur.fetchall()
+    data = cur.fetchall()
+    pd_data = pd.DataFrame(data, columns =['id_venda'])
+    return pd_data
 
 def check_table():
     sql = 'SELECT CASE WHEN EXISTS (SELECT * FROM vendas LIMIT 1) THEN 1 ELSE 0 END'
@@ -50,11 +63,27 @@ def check_table():
         return True
     return False
 
-def delete_data():
-    cur.execute('truncate table vendas')
+def add_vend_table(data:list):
+    data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
+    if(data_string == ""):
+        return
+    cur.execute('INSERT INTO VENDAS VALUES ' + str(data_string))
     con.commit()
 
+def add_func_table(data:list):
+    data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
+    if(data_string == ""):
+        return
+    cur.execute('INSERT INTO FUNCIONARIOS VALUES ' + str(data_string))
+    con.commit()
 
+def add_cat_table():
+    data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
+    if(data_string == ""):
+        return
+    cur.execute('INSERT INTO CATEGORIAS VALUES ' + str(data_string))
+    con.commit()
+    
 
 
 
