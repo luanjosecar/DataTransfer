@@ -22,11 +22,6 @@ def pd_to_tuples(frame):
 
 def feed_table():
 
-    # if(check_table()):
-    #    frame_a = instance_a()
-    # else :
-    #     lastView = os.getenv("LAST_VIEW")
-    #     frame_a = instance_time(lastView)
     frame_a = verify_difs()
     
     frame_b = instance_b_cat()
@@ -47,11 +42,8 @@ def feed_table():
 
     data = pd_to_tuples(frame)
     input_data(data)
-    os.environ["LAST_VIEW"] = str(final_data(frame))
 
 
-def final_data(frame):
-    return frame.data.max()
 
 
 def request_feed():

@@ -55,6 +55,21 @@ def check_id_vend_c():
     pd_data = pd.DataFrame(data, columns =['id_venda'])
     return pd_data
 
+
+def check_funcs():
+    sql = "select * from FUNCIONARIOS"
+    cur.execute(sql)
+    data = cur.fetchall()
+    pd_data = pd.DataFrame(data, columns =['id_func', 'func'])
+    return pd_data
+
+def check_cats():
+    sql = "select * from CATEGORIAS"
+    cur.execute(sql)
+    data = cur.fetchall()
+    pd_data = pd.DataFrame(data, columns =['id_cat', 'cat'])
+    return pd_data
+
 def check_table():
     sql = 'SELECT CASE WHEN EXISTS (SELECT * FROM vendas LIMIT 1) THEN 1 ELSE 0 END'
     cur.execute(sql)
@@ -62,6 +77,9 @@ def check_table():
     if index == 1:
         return True
     return False
+
+
+
 
 def add_vend_table(data:list):
     data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
@@ -77,7 +95,7 @@ def add_func_table(data:list):
     cur.execute('INSERT INTO FUNCIONARIOS VALUES ' + str(data_string))
     con.commit()
 
-def add_cat_table():
+def add_cat_table(data:list):
     data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
         return
