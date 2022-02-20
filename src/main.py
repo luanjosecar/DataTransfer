@@ -15,44 +15,34 @@ def join_info(frame1, frame2, frame3):
     frame = frame[['id_venda', 'func', 'cat', 'data', 'venda']]
     return frame
 
-def pd_to_tuples(frame):
-    data = frame.itertuples(index=False, name=None)
-    return list(data)
-
-
 def feed_table():
+    create_bases()
 
-    frame_a = verify_difs()
-    
-    frame_b = instance_b_cat()
-    frame_c = instance_b_func()
-    frame = join_info(frame_a, frame_b, frame_c)
+    frame_1 = verify_difs_vendas()
+    frame_2 = instance_b_cat()
+    frame_3 = instance_b_func()
+    frame_vendas = join_info(frame_1, frame_2, frame_3)
 
-    print(frame.head())
+    print(frame_vendas.head())
 
     #Remove Duplicadas
-    frame = frame.drop_duplicates()
+    frame_vendas = frame_vendas.drop_duplicates()
 
-    # Remover datas Invalidas
-    frame = validate_date(frame)
-    
-    # Remover Funcionários Invalidos
-    frame = validate_func(frame)
+    data = pd_to_tuples(frame_vendas)
+    add_vend_table(data)
 
+    frame_func = verify_difs_func()
+    add_func_table(frame_func)
 
-    data = pd_to_tuples(frame)
-    input_data(data)
-
+    frame_cat = verify_difs_cat()
+    add_cat_table(frame_cat)
 
 
 
-def request_feed():
-    create_bases()
-    feed_table()
 
 if __name__ == "__main__":
     
-    request_feed()
+    feed_table()
 
 
     

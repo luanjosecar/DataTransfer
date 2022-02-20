@@ -81,21 +81,24 @@ def check_table():
 
 
 
-def add_vend_table(data:list):
+def add_vend_table(data):
+    data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
         return
     cur.execute('INSERT INTO VENDAS VALUES ' + str(data_string))
     con.commit()
 
-def add_func_table(data:list):
+def add_func_table(data):
+    data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
         return
     cur.execute('INSERT INTO FUNCIONARIOS VALUES ' + str(data_string))
     con.commit()
 
-def add_cat_table(data:list):
+def add_cat_table(data):
+    data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
         return

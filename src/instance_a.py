@@ -1,7 +1,6 @@
 import psycopg2
 import pandas as pd
 
-
 import os
 from dotenv import load_dotenv
 
@@ -32,7 +31,6 @@ def instance_time(time):
     return pd_data
 
 def check_id_vend_a():
-
     sql = "select id_venda from venda"
     cur.execute(sql)
     data = cur.fetchall()
@@ -45,8 +43,8 @@ def get_data_by_id(data):
     data_string = ','.join( str(values) for values in data)
     if data_string == "":
         return pd.DataFrame( columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
-    sql = "SELECT * FROM funcionario WHERE ID_VENDA IN ( "+data_string+" )" 
 
+    sql = "SELECT * FROM funcionario WHERE ID_VENDA IN ( "+data_string+" )" 
     cur.execute(sql)
     data = cur.fetchall()
     pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
