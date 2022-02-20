@@ -10,6 +10,41 @@ services:
       POSTGRES_DB: rio
       POSTGRES_PASSWORD: root
     volumes:
-      - .dbdata:/var/lib/postgresql/data
+      - base_3:/var/lib/postgresql/data
     ports:
       - 8003:5432
+
+  db_a:
+    image: postgres
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_DB: desafio
+      POSTGRES_PASSWORD: root
+    volumes:
+      - base_2:/var/lib/postgresql/data
+    ports:
+      - 8004:5432
+
+  db_b:
+    image: postgres
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_DB: desafio
+      POSTGRES_PASSWORD: root
+    volumes:
+      - base_1:/var/lib/postgresql/data
+    ports:
+      - 8005:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  base_1:
+  base_2:
+  base_3:

@@ -10,9 +10,9 @@ host = os.getenv('HOST_A')
 db = os.getenv("DB")
 user = os.getenv("PSTG_USER")
 password = os.getenv("PSTG_PSW")
+port = os.getenv("PORT_A")
 
-
-con = psycopg2.connect(host=host, database=db, user=user, password=password)
+con = psycopg2.connect(host=host, database=db, user=user, password=password, port=port)
 cur = con.cursor()
 
 def instance_a():

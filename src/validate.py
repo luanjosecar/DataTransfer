@@ -14,15 +14,15 @@ def verify_difs_vendas():
     pd_data = get_vendas_by_id(frame)
     return pd_data
 
-def verify_difs_func():
-    pd_func = get_funcs()
+def verify_difs_func(func_frame):
+    pd_func = func_frame
     pd_func_c = check_funcs()
     frame = pd.concat([pd_func,pd_func_c]).drop_duplicates(keep=False)
     pd_data = get_func_by_id(frame)
     return pd_data
 
-def verify_difs_cat():
-    pd_cat = get_cats()
+def verify_difs_cat(cat_frame):
+    pd_cat = cat_frame
     pd_cat_c = check_cats()
     frame = pd.concat([pd_cat,pd_cat_c]).drop_duplicates(keep=False)
     pd_data = get_cat_by_id(frame)

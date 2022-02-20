@@ -7,13 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-host ='localhost'
-db = 'rio'
-user = 'postgres'
-password = "root"
+host = os.getenv('HOST_C')
+db = os.getenv("DB_C")
+user = os.getenv("PSTG_USER_C")
+password = os.getenv("PSTG_PSW")
+port = os.getenv("PORT_C")
 
 
-con = psycopg2.connect(host=host, database=db, user=user, password=password, port=8003)
+con = psycopg2.connect(host=host, database=db, user=user, password=password, port=port)
 
 cur = con.cursor()
 

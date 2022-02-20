@@ -16,24 +16,24 @@ def join_info(frame1, frame2, frame3):
     return frame
 
 def feed_table():
+    
     create_bases()
 
     frame_1 = verify_difs_vendas()
     frame_2 = get_cats()
     frame_3 = get_funcs()
+
     frame_vendas = join_info(frame_1, frame_2, frame_3)
-
-    print(frame_vendas.head())
-
-    #Remove Duplicadas
     frame_vendas = frame_vendas.drop_duplicates()
 
     add_vend_table(frame_vendas)
 
-    frame_func = verify_difs_func()
+    frame_func = verify_difs_func(frame_3)
+    frame_func = frame_func.drop_duplicates()
     add_func_table(frame_func)
 
-    frame_cat = verify_difs_cat()
+    frame_cat = verify_difs_cat(frame_2)
+    frame_cat = frame_cat.drop_duplicates()
     add_cat_table(frame_cat)
 
 

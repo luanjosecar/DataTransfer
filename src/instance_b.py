@@ -9,9 +9,10 @@ host = os.getenv('HOST_B')
 db = os.getenv("DB")
 user = os.getenv("PSTG_USER")
 password = os.getenv("PSTG_PSW")
+port = os.getenv("PORT_B")
 
 
-con = psycopg2.connect(host=host, database=db, user=user, password=password)
+con = psycopg2.connect(host=host, database=db, user=user, password=password, port=port)
 cur = con.cursor()
 
 def get_cats():
