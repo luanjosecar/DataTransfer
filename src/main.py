@@ -19,8 +19,8 @@ def feed_table():
     create_bases()
 
     frame_1 = verify_difs_vendas()
-    frame_2 = instance_b_cat()
-    frame_3 = instance_b_func()
+    frame_2 = get_cats()
+    frame_3 = get_funcs()
     frame_vendas = join_info(frame_1, frame_2, frame_3)
 
     print(frame_vendas.head())
@@ -28,8 +28,7 @@ def feed_table():
     #Remove Duplicadas
     frame_vendas = frame_vendas.drop_duplicates()
 
-    data = pd_to_tuples(frame_vendas)
-    add_vend_table(data)
+    add_vend_table(frame_vendas)
 
     frame_func = verify_difs_func()
     add_func_table(frame_func)

@@ -37,14 +37,14 @@ def check_id_vend_a():
     pd_data = pd.DataFrame(data, columns =['id_venda'])
     return pd_data
 
-def get_data_by_id(data):
+def get_vendas_by_id(frame):
     data = list(frame.itertuples(index=False, name=None))
 
-    data_string = ','.join( str(values) for values in data)
+    data_string = ','.join( str(values) for values, in data)
     if data_string == "":
         return pd.DataFrame( columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
 
-    sql = "SELECT * FROM funcionario WHERE ID_VENDA IN ( "+data_string+" )" 
+    sql = "SELECT * FROM VENDA WHERE ID_VENDA IN ( "+data_string+" )" 
     cur.execute(sql)
     data = cur.fetchall()
     pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])

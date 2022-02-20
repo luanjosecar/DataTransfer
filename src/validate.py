@@ -11,19 +11,19 @@ def verify_difs_vendas():
     pd_data_c = check_id_vend_c()
     pd_data_a = check_id_vend_a()
     frame = pd.concat([pd_data_c,pd_data_a]).drop_duplicates(keep=False)
-    pd_data = get_data_by_id(frame)
+    pd_data = get_vendas_by_id(frame)
     return pd_data
 
 def verify_difs_func():
     pd_func = get_funcs()
     pd_func_c = check_funcs()
     frame = pd.concat([pd_func,pd_func_c]).drop_duplicates(keep=False)
-    pd_data = get_data_by_id(frame)
+    pd_data = get_func_by_id(frame)
     return pd_data
 
 def verify_difs_cat():
-    pd_cat = get_cat()
+    pd_cat = get_cats()
     pd_cat_c = check_cats()
     frame = pd.concat([pd_cat,pd_cat_c]).drop_duplicates(keep=False)
-    pd_data = get_data_by_id(frame)
+    pd_data = get_cat_by_id(frame)
     return pd_data

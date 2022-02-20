@@ -31,7 +31,7 @@ def create_bases():
 
     cur.execute(''' CREATE TABLE IF NOT EXISTS 
             FUNCIONARIOS (
-                ID_FUNC INTEGER,
+                ID_FUNCIONARIO INTEGER,
                 FUNCIONARIO VARCHAR(1024)
             )
         ''')
@@ -40,7 +40,7 @@ def create_bases():
 
     cur.execute(''' CREATE TABLE IF NOT EXISTS 
             CATEGORIAS (
-                ID_CAT INTEGER,
+                ID_CATEGORIA INTEGER,
                 CATEGORIA VARCHAR(1024)
             )
         ''')
@@ -81,7 +81,7 @@ def check_table():
 
 
 
-def add_vend_table(data):
+def add_vend_table(frame):
     data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s,%s,%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
@@ -89,7 +89,7 @@ def add_vend_table(data):
     cur.execute('INSERT INTO VENDAS VALUES ' + str(data_string))
     con.commit()
 
-def add_func_table(data):
+def add_func_table(frame):
     data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
@@ -97,7 +97,7 @@ def add_func_table(data):
     cur.execute('INSERT INTO FUNCIONARIOS VALUES ' + str(data_string))
     con.commit()
 
-def add_cat_table(data):
+def add_cat_table(frame):
     data = list(frame.itertuples(index=False, name=None))
     data_string = ','.join(cur.mogrify("(%s,%s)",values ).decode('utf-8')for values in data)
     if(data_string == ""):
