@@ -58,3 +58,13 @@ def get_vendas_by_id(frame):
     pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
     con.close()
     return pd_data
+
+def get_vendas_great_id(max_id):
+    sql = "SELECT * FROM VENDA WHERE ID_VENDA > "+data_string+"" 
+    con = psycopg2.connect(host=HOST, database=DB, user=USER, password=PASSWORD, port=PORT)
+    cur = con.cursor()
+    cur.execute(sql)
+    data = cur.fetchall()
+    pd_data = pd.DataFrame(data, columns =['id_venda', 'id_func', 'id_cat', 'data','venda'])
+    con.close()
+    return pd_data

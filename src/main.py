@@ -66,6 +66,7 @@ def feed_table():
 if __name__ == "__main__":
     schedule.every().day.at(TIMER).do(feed_table)
     while True:
+        feed_table()
         schedule.run_pending()
         time.sleep(10)
 

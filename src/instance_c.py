@@ -126,7 +126,15 @@ def add_cat_table(frame):
     cur.execute('INSERT INTO CATEGORIAS VALUES ' + str(data_string))
     con.commit()
     con.close()
-    
+
+def get_max_date():
+    con = psycopg2.connect(host=HOST, database=DB, user=USER, password=PASSWORD, port=PORT)
+    cur = con.cursor()
+    sql = "select max(id_venda) as max_date from vendas"
+    cur.execute(sql)
+    data,  = cur.fetchone()
+    con.close()
+    return data
 
 
 

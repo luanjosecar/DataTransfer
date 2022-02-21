@@ -9,8 +9,11 @@ import os
 
 def verify_difs_vendas():
     pd_data_c = check_id_vend_c()
+
     pd_data_a = check_id_vend_a()
+
     frame = pd.concat([pd_data_c,pd_data_a]).drop_duplicates(keep=False)
+    a = get_max_date()
     pd_data = get_vendas_by_id(frame)
     return pd_data
 
@@ -45,3 +48,4 @@ def verify_non_cat(frame):
         print(str(len(non_cat)) + "Categorias não encontradas")
         return valid_cat
     return frame
+
