@@ -9,6 +9,10 @@ def data_1():
 
     con = psycopg2.connect(host='localhost', database='desafio', user='postgres', password='root', port=8005)
     cur = con.cursor()
+
+    cur.execute("DROP TABLE IF EXISTS VENDA")
+    con.commit()
+
     cur.execute(''' CREATE TABLE IF NOT EXISTS 
             VENDA (
                 ID_VENDA INTEGER,
@@ -25,9 +29,17 @@ def data_2():
 
     con = psycopg2.connect(host='localhost', database='desafio', user='postgres', password='root', port=8004)
     cur = con.cursor()
+
+
+    cur.execute("DROP TABLE IF EXISTS FUNCIONARIO")
+    con.commit()
+
+    cur.execute("DROP TABLE IF EXISTS CATEGORIA")
+    con.commit()
+
     cur.execute(''' CREATE TABLE IF NOT EXISTS 
             FUNCIONARIO (
-                ID_FUNCIONARIO INTEGER,
+                ID INTEGER,
                 NOME_FUNCIONARIO VARCHAR(1024)
             )
         ''')
@@ -35,7 +47,7 @@ def data_2():
 
     cur.execute(''' CREATE TABLE IF NOT EXISTS 
             CATEGORIA (
-                ID_CATEGORIA INTEGER,
+                ID INTEGER,
                 NOME_CATEGORIA VARCHAR(1024)
             )
         ''')
@@ -70,19 +82,23 @@ def create_mock_b():
     con.commit()
     con.close()
     
+
+
 print("Criando tabelas auxiliares")
 data_1()
 data_2()
 
 print("Iniciando o processo de MockData")
 
+
+
+
 def create_data():
     create_mock_a()
     create_mock_b()
     print("--------------------------------------")
 
-schedule.every(1).minutes.do(create_data)
-
 while True:
-    schedule.run_pending()
+    create_data()
     time.sleep(10)
+
