@@ -35,9 +35,6 @@ def feed_table():
         frame_vendas = frame_vendas.drop_duplicates()
         print(str(len(frame_vendas)) + " Itens novos encontrados na tablea VENDA")
 
-        # Adiciona validação de funcionários
-        frame_vendas = verify_non_func(frame_vendas)
-
         print("Adicionando itens a Tabela Vendas \n\n")
 
 
