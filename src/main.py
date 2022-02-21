@@ -27,17 +27,13 @@ def feed_table():
         create_bases()
 
         frame_1 = verify_difs_vendas()
-
         frame_2 = get_cats()
         frame_3 = get_funcs()
 
         frame_vendas = join_info(frame_1, frame_2, frame_3)
         frame_vendas = frame_vendas.drop_duplicates()
         print(str(len(frame_vendas)) + " Itens novos encontrados na tablea VENDA")
-
         print("Adicionando itens a Tabela Vendas \n\n")
-
-
         add_vend_table(frame_vendas)
 
         frame_func = verify_difs_func(frame_3)
@@ -50,9 +46,9 @@ def feed_table():
 
         frame_cat = frame_cat.drop_duplicates()    
         print(str(len(frame_func)) + " Itens novos encontrados na tablea CATEGORIAS")
-
         print("Adicionando itens a Tabela CATEGORIAS \n\n")
         add_cat_table(frame_cat)
+
     except Exception as e:
         print("Erro ao realizar operação")
         print(str(e))
@@ -66,7 +62,7 @@ def feed_table():
 if __name__ == "__main__":
     schedule.every().day.at(TIMER).do(feed_table)
     while True:
-        feed_table()
+        
         schedule.run_pending()
         time.sleep(10)
 
