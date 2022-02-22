@@ -19,7 +19,7 @@ TIMER = os.getenv('TIMER')
 def verify_difs_vendas():
     pd_data_c = check_id_vend_c()
 
-    pd_data_a = check_id_vend_a()
+    pd_data_a = check_id_vend_a().drop_duplicates(keep='first')
 
     frame = pd.concat([pd_data_c,pd_data_a]).drop_duplicates(keep=False)
     pd_data = get_vendas_by_id(frame)
@@ -27,19 +27,19 @@ def verify_difs_vendas():
     #Outro formato que pode ser utilizado
     # max_date = get_max_date()
     # pd_data_a = get_vendas_great_id(max_date)
-    # pd_data_a = pd_data_a.drop_duplicates(keep=False)
+    # pd_data_a = pd_data_a.drop_duplicates(keep='first')
     # return pd_data_a
     
 
 def verify_difs_func(func_frame):
-    pd_func = func_frame
+    pd_func = func_frame.drop_duplicates(keep='first')
     pd_func_c = check_funcs()
     frame = pd.concat([pd_func,pd_func_c]).drop_duplicates(keep=False)
     pd_data = get_func_by_id(frame)
     return pd_data
 
 def verify_difs_cat(cat_frame):
-    pd_cat = cat_frame
+    pd_cat = cat_frame.drop_duplicates(keep='first')
     pd_cat_c = check_cats()
     frame = pd.concat([pd_cat,pd_cat_c]).drop_duplicates(keep=False)
     pd_data = get_cat_by_id(frame)
