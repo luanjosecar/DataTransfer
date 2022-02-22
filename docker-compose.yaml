@@ -7,17 +7,3 @@ services:
       dockerfile: DockerFile
     volumes:
       - .:/app
-    environment:
-      - HOST_A : 34.122.192.103
-      - HOST_B : 34.134.44.95
-      - DB : desafio
-      - PSTG_USER : admin_bix
-      - PSTG_PSW : C4sB;Sc!}c>vS)DDdd
-      - HOST_C : 34.67.94.16
-      - DB_C : Rio
-      - PSTG_USER_C : Rio
-      - PSTG_PSW_C : C4sB;Sc!}c>vS)DDdd
-      - PORT_A : 5432
-      - PORT_B : 5432
-      - PORT_C : 5432
-      - TIMER : 00:00
