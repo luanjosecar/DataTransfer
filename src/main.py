@@ -61,7 +61,7 @@ def feed_table():
 
 if __name__ == "__main__":
     print("Iniciando modelagem do banco de dados")
-    print("Dados Rodando a : " + str(TIMER) )
+    print_config()
     schedule.every().day.at("00:00").do(feed_table)
     while True:
         

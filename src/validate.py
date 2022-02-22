@@ -6,6 +6,15 @@ from instance_c import *
 from instance_b import *
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+HOSTA = os.getenv('HOST_A')
+HOSTB = os.getenv('HOST_B')
+HOSTC = os.getenv('HOST_C')
+TIMER = os.getenv('TIMER')
 
 def verify_difs_vendas():
     pd_data_c = check_id_vend_c()
@@ -54,3 +63,8 @@ def verify_non_cat(frame):
         return valid_cat
     return frame
 
+def print_config():
+    print("Pegando dados do host : " + str(HOSTA))
+    print("Pegando dados do host : " +str(HOSTB) )
+    print("Escrevendo dados no host : " +str(HOSTC))
+    print("As : " +str(TIMER))
